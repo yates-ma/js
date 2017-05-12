@@ -1,0 +1,37 @@
+function checkNavigator(navigatorType) {
+    var userAgent = navigator.userAgent.toLowerCase(),
+        rMsie = /(msie\s|trident.*rv:)([\w.]+)/,
+        rFirefox = /(firefox)\/([\w.]+)/,
+        rOpera = /(opera).+version\/([\w.]+)/,
+        rChrome = /(chrome)\/([\w.]+)/,
+        rSafari = /version\/([\w.]+).*(safari)/,
+        flag = false;
+
+    navigatorType = navigatorType.toLowerCase();
+    switch(navigatorType) {
+        case "ie":
+            flag = (null != rMsie.exec(userAgent));
+            break;
+
+        case "firefox":
+            flag = (null != rFirefox.exec(userAgent));
+            break;
+
+        case "opera":
+            flag = (null != rOpera.exec(userAgent));
+            break;
+
+        case "chrome":
+            flag = (null != rChrome.exec(userAgent));
+            break;
+
+        case "safari":
+            flag = (null != rSafari.exec(userAgent));
+            break;
+
+        default:
+            break;
+    }
+
+    return flag;
+}
