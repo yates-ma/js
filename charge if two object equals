@@ -1,0 +1,19 @@
+function isObjectEquals(obj1, obj2){
+    var bool = true;
+
+    if (typeof(obj1) != typeof(obj2)) {
+        bool = false;
+    } else {
+        if ("object" != typeof(obj1)) {
+            bool = (obj1 == obj2);
+        } else {
+            for (var i in obj1) {
+                if (!isObjectEquals(obj1[i], obj2[i])) {
+                    bool = false;
+                    break;
+                }
+            }
+        }
+    }
+    return bool;
+}
