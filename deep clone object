@@ -1,0 +1,14 @@
+function objectClone(sObj){
+    if ("object" !== typeof(sObj)) {
+        return sObj;
+    }
+
+    var s = {};
+    if (Object.prototype.toString.call(sObj) === '[object Array]') {
+        s = [];
+    }
+    for (var i in sObj) {
+        s[i] = objectClone(sObj[i])
+    }
+    return s;
+}
