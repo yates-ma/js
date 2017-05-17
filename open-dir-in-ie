@@ -1,0 +1,14 @@
+function openFileIIs(){          
+	    try{   
+	        var obj=new ActiveXObject("wscript.shell");
+	        var openDir = "C:\\Users\\Administrator\\Downloads\\";
+	        if(obj){   
+	            obj.Run("\""+openDir+"\"", 1, false );  
+	            //obj.run("osk");/*打开屏幕键盘*/  
+	            //obj.Run('"'+filename+'"');   
+	            obj=null;   
+	        }   
+	    }catch(e){
+	        alert("请确定是否存在该盘符或文件");   
+	    }      
+	}
