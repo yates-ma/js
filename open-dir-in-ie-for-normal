@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<span>
+			<a href="javascript: void(0);" onclick="window.location.href='C:\\Users\\Administrator\\Downloads\\'">click here to open the download dir of administritor user</a>
+		</span>
+	</body>
+</html>
