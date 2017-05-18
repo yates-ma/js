@@ -1,0 +1,16 @@
+   	//两者道理一样  但是 $.ajax可以方便地指定是否从缓存中查取
+    $.ajax({
+  	  url: url,
+  	  data: null,
+  	  cache: false,//非常重要 绕过缓存  项目中试用ie时  退出登录  另一用户不同资源时显示退出前的  因为从缓存中查询  shit
+  	  success: function(data, textStatus) { //如请求状态testStatus返回suceess，则回调函数被调用(此处用不到，默认后台返回正确)
+     		if (data.result == "success") {
+     		}
+      },
+  	  dataType: "json"
+  	});
+  
+   $.get(url, function(data, textStatus){
+      if(data.result == "success") {
+     	}
+   },"json");
