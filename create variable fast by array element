@@ -1,0 +1,1 @@
+var arr = [1,2,3,5]; var [b,c]=arr; console.log(b,c);//1 2
