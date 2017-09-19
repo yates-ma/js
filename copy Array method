@@ -1,0 +1,2 @@
+var original = [1,2,3];
+var copy = [...original];
