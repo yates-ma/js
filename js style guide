@@ -1,0 +1,10 @@
+> new reassign parameters
+  func function (a) {a=1}//bad
+  func function (a) {var b=a}//good
+  
+> don't declare function with noname in globle
+  function func () {}//bad
+  var func = function () {}//good
+
+> decalre name of func first as property, then create func is good in object
+  var obj = {var myFunc = myFunc; function myFunc () {}};
