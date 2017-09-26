@@ -8,3 +8,5 @@
 
 > decalre name of func first as property, then create func is good in object
   var obj = {var myFunc = myFunc; function myFunc () {}};
+
+8.1
