@@ -1,0 +1,47 @@
+> 在浏览器控制台将对象转成字符串：
+var bbbb = {
+	"record": [
+		{
+		"alarm_id": "aaa-bbb",
+		"alarm_tm": 1508739505750,
+		"tagid": '55',
+		"alarm_type": 134,
+		"is_again": 0
+		}
+	],
+	"handle_way": 3,
+	"handle_remark": "已知晓",
+	"is_pend": 0
+}; console.log(JSON.stringify(bbbb));
+{"record":[{"alarm_id":"aaa-bbb","alarm_tm":1508739505750,"tagid":"55","alarm_type":134,"is_again":0}],"handle_way":3,"handle_remark":"已知晓","is_pend":0}
+
+> 在线编码转换
+  用encodeURI将所得的json字符串编码
+  http://tool.oschina.net/encode?type=4
+  
+  具体：
+  在tab项URL转码  →  将字符串粘到左侧  →  点击URL编码
+  
+> 结果
+  %7B%22record%22:%5B%7B%22alarm_id%22:%22aaa-bbb%22,%22alarm_tm%22:1508739505750,%22tagid%22:%2255%22,%22alarm_type%22:134,%22is_again%22:0%7D%5D,%22handle_way%22:3,%22handle_remark%22:%22%E5%B7%B2%E7%9F%A5%E6%99%93%22,%22is_pend%22:0%7D
+  
+> 最终请求的get参数
+  http://localhost:8080/localsense/gaojing/handlealarminfo_outer?
+  params=%7B%22record%22:%5B%7B%22alarm_id%22:%22aaa-bbb%22,%22alarm_tm%22:1508739505750,%22tagid%22:%2255%22,%22alarm_type%22:134,%22is_again%22:0%7D%5D,%22handle_way%22:3,%22handle_remark%22:%22%E5%B7%B2%E7%9F%A5%E6%99%93%22,%22is_pend%22:0%7D
+  
+  注意：用params作为请求key，后台接收参数时也是用request.getParameter("params");
+  
+> 后台
+  String parameter = request.getParameter("params");
+  parameter =new String (parameter.getBytes("iso-8859-1"),"UTF-8");
+  
+  JSONObject fromObject = JSONObject.fromObject(parameter);
+  Map<String, Class> classMap = new HashMap<String, Class>();
+  classMap.put("record", GaojingOutParamRecord.class);
+  
+  Object bean = JSONObject.toBean(fromObject, TGaojingOutParamDTO.class, classMap);
+  TGaojingOutParamDTO outParams = (TGaojingOutParamDTO)bean;
+  
+  注意：前台转之前的json对象和javaBean（TGaojingOutParamDTO）是对应的（json串的key对javaBean的属性），否则后台转换会报错
+  
+ over.
