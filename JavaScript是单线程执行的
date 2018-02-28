@@ -5,4 +5,61 @@
 只能保证在指定的时间过后将任务(需要执行的函数)插入队列等候，并不保证这个任务在什么时候执行。
 执行javascript的线程会在空闲的时候，自行从队列中取出任务然后执行它
 
+<html>
+<body>
+Interval 测试页面
+<script>
+<!-- var timer = 0; -->
+function getTimeShow() {
+		return new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds()+":"+new Date().getMilliseconds();	
+}
+
+console.log(getTimeShow(), ': ', 1)
+setTimeout(function () {console.log(getTimeShow(), '：a')}, 100);
+setTimeout(function () {console.log(getTimeShow(), '：b')}, 0);
+var taa = 0;
+var saw = setInterval(function () {
+	if(taa++ > 10) clearInterval(saw);
+	console.log(getTimeShow(),': c');
+}, 100);
+var sum = 0;
+for (var i = 0; i < 1000000; i ++) {
+    sum += i;
+}
+console.log(getTimeShow(), ': ', sum);
+var sum1 = 0;
+for (var i = 0; i < 1000000; i ++) {
+    sum1 += i;
+}
+console.log(getTimeShow(), ': ', sum1);
+var sum2 = 0;
+for (var i = 0; i < 1000000; i ++) {
+    sum2 += i;
+}
+console.log(getTimeShow(), ': ', sum2);
+var sum3 = 0;
+for (var i = 0; i < 1000000; i ++) {
+    sum3 += i;
+}
+console.log(getTimeShow(), ': ', sum3);
+var sum4 = 0;
+for (var i = 0; i < 1000000; i ++) {
+    sum4 += i;
+}
+console.log(getTimeShow(), ': ', sum4);
+var sum5 = 0;
+for (var i = 0; i < 1000000; i ++) {
+    sum5 += i;
+}
+console.log(getTimeShow(), ': ', sum5);
+var sum6 = 0;
+for (var i = 0; i < 1000000; i ++) {
+    sum6 += i;
+}
+console.log(getTimeShow(), ': ', sum6);
+
+</script>
+</body>
+</html>
+
 转载自https://www.jianshu.com/p/fdbfdbdfaa8c
