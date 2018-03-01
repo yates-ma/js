@@ -1,0 +1,11 @@
+转自：https://www.cnblogs.com/haodawang/articles/5850822.html
+
+js是基于单线程的
+
+浏览器的常驻线程大概有：
+js引擎
+界面GUI
+事件触发
+http请求
+
+用new Worker实现多线程
