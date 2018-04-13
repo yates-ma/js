@@ -1,0 +1,64 @@
+//translate Blob to String
+//
+//主要方式如下：
+//var uint8Array_a = new Uint8Array(data);
+//var myString = "";
+//for (var i=0; i<uint8Array_a.byteLength; i++) {
+//myString += String.fromCharCode(uint8Array_a[i])
+//}
+//
+
+
+function myTranslate() {
+try {
+          var hosturl = window.document.getElementById("serverip").value;	
+          var protocol_ = window.document.getElementById("protocol").value;	
+          var ws1 = new WebSocket("ws://"+hosturl,[protocol_]);//连接服务器					
+					ws1.onopen = function(event){
+						Debug("已经与服务器建立了连接");
+					};				
+					ws1.onmessage = function(event) {
+                        if (event.data instanceof Blob) {
+                            var blob = event.data;
+                            //先把blob进行拆分，第一个字节是标识
+                            var newblob = blob.slice(0, blob.size);
+                            //js中的blob没有没有直接读出其数据的方法，通过FileReader来读取相关数据
+                            var reader = new FileReader();
+                            reader.readAsArrayBuffer(newblob);
+                            var msgtype=-1;
+                            //  当读取操作成功完成时调用.
+                            reader.onload = function (evt) {
+                                if (evt.target.readyState == FileReader.DONE) {
+                                    var data = evt.target.result;
+									
+									var uint8Array_a = new Uint8Array(data);
+									//var str = String.fromCharCode.apply(null, uint8Array_a);
+									var myString = "";
+									for (var i=0; i<uint8Array_a.byteLength; i++) {
+										myString += String.fromCharCode(uint8Array_a[i])
+									}
+						            Debug(myString); 
+                                }
+                            };
+                        }
+						else{							
+							//处理数据,此处需要将event传回来的data做解析。data中只需要数据,不要带那个什么anchors的头
+							var evtdata = event.data;
+							if (!evtdata) {
+								return;
+							}
+							//Debug(evtdata.toString());
+							//if (evtdata.length) {
+							//	evtdata = JSON.parse(evtdata);
+							//}
+									
+						}
+					};
+					ws1.onclose = function(event){alert("已经与服务器断开连接");};
+					ws1.onerror = function(event){alert("WebSocket异常！");};
+//					ws_user_author = protocol_ == "localSensePush-protocol" ? ws1 : null;
+//					ws_send_json = protocol_ == "localSense-Json" ? ws1 : null;
+			} catch (ex) {
+				alert(ex.message);      
+			}
+}
