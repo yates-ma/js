@@ -1,0 +1,14 @@
+查自：
+https://segmentfault.com/q/1010000000668975
+
+IE10/11限制了到单个服务器最大并发websocket的数量，这个数字的缺省值是6，所以当你创建第7个websocket连接时就会报SecurityError。
+这个数字可以在注册表里改
+https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/general-info/ee330736(v=vs.85)#websocket_maxconn
+
+但我试了以上方法，没用。
+紧接用下面的方法：
+https://blog.csdn.net/shihailing/article/details/80436914
+
+也不行
+
+最后只能减少websocket数量了，测试后确实是6个（包含6）以内才行
