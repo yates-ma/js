@@ -14,3 +14,9 @@ for (int i=0; i<fromObject.size(); i++) {
   JSONObject obj = fromObject.getJSONObject(i);
   TConfigDTO conf = (TConfigDTO) JSONObject.toBean(obj, TConfigDTO.class);
 }
+
+注意，如果参数不是对象数组，是单个对象
+obj = {"a": 1, "b": 2}
+则后端用如下
+JSONObject obj = JSONObject.fromObject(params);
+TConfigDTO bean = (TConfigDTO) JSONObject.toBean(obj, TConfigDTO.class);
