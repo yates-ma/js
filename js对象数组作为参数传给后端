@@ -1,0 +1,16 @@
+1. 前端
+var obj = [{"a": 1, "b": 2}, {"a": 3, "b": 4}];
+var param = JSON.stringify(obj);
+/xxx/getXXX?params=url编码后的param
+
+2. 后端
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+String params = request.getParameter("params");
+JSONArray fromObject = JSONArray.fromObject(params);
+if(fromObject.size() > 0)
+for (int i=0; i<fromObject.size(); i++) {
+  JSONObject obj = fromObject.getJSONObject(i);
+  TConfigDTO conf = (TConfigDTO) JSONObject.toBean(obj, TConfigDTO.class);
+}
