@@ -1,3 +1,10 @@
 参考自：
 https://blog.csdn.net/nihaoqiulinhe/article/details/78719451
 
+最后给select标签加了id，用jquery的的val手动给它赋值了
+					<select id="id_input_search_area_type" ng-if="isAreaTypeInited" ng-model="area_type" ng-change="setAreaTypeVal(area_type)" class="vertical_grp_select inner_elem_border_color">
+			            <option  ng-repeat="data in areaList">{{data}}</option> 
+					</select>
+          
+          $scope.area_type = "--请选择--";
+          $("#id_input_search_area_type").val($scope.area_type);
