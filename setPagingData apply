@@ -17,4 +17,6 @@ $scope.setPagingData = function(data, page, pageSize) {
   }
 };
 
-以上，在第一行，不加slice(0)的情况下，更新列表失败。
+以上，在第1行或第8行加slice(0)才能使列表成功
+
+总之，在setPagingData里，应当进行一次slice(0)操作
