@@ -1,0 +1,20 @@
+$scope.gData = g_scope.alarm.alarmNewTop20.datas.slice(0);
+$timeout(function(){
+  $scope.setPagingData($scope.gData, $scope.pagingOptions.currentPage, $scope.pagingOptions.pageSize);
+},23);
+
+$scope.setPagingData = function(data, page, pageSize) {
+  $scope.initMySelections();
+  var pagedData = data;
+  for (var i = 0; i < pagedData.length; i++) {
+    pagedData[i].typeshow = GetAlarmInfoCfg(pagedData[i]).typeshow;
+    pagedData[i].timestamp4show = formatUnixTimeStamp(pagedData[i].timestamp);
+  }
+  $scope.totalServerItems = Object.keys(g_scope.alarm.alarmNew.ids).length;
+  $scope.myNewData = pagedData;//分页查询时,直接使用查询到的结果
+  if (!$scope.$$phase) {
+    $scope.$apply();
+  }
+};
+
+以上，在第一行，不加slice(0)的情况下，更新列表失败。
