@@ -1,0 +1,40 @@
+转载自：
+https://www.cnblogs.com/heben/p/8989554.html
+
+function ListCommon2(first,second,third) 
+{ 
+    this.First=function () 
+    { 
+        alert("first do"+first); 
+    } 
+} 
+//不加prototype的情况
+ListCommon2.do1=function(first) 
+{ 
+    // this.First(); 
+    alert("first do"+first); 
+} 
+//添加prototype的情况
+ListCommon2.prototype.do2=function(first) 
+{ 
+    // this.First(); 
+    alert("first do"+first); 
+}
+
+
+上面添加与不添加prototype有什么区别呢？下面我们来测试这个实例。代码如下：
+
+var t1=new ListCommon2("烧水1","泡茶1","喝1"); 
+// t1.do1();//调用出错 
+ListCommon2.do1("烧水1"); 
+var t2=new ListCommon2("烧水2","泡茶2","喝2"); 
+t2.do2("烧水2");// 
+// ListCommon2.do2("烧水1");//调用出错 
+
+经过测试发现，没有使用prototype的方法相当于类的静态方法，因此可以这样调用，ListCommon2.do1(“烧水1”);但如果这样调用就会出错，t1.do1();
+
+相反，使用prototype的方法相当于类的实例方法，不许new后才能使用，ListCommon2.do2(“烧水1”);这样就会出错
+
+结论：
+使用 prototype定义的方法相当于类的实例方法，必须new后才能使用
+不使用prototype定义的方法相当于类的静态方法，可以直接使用，不需要new
