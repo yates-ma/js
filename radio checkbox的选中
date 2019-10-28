@@ -1,0 +1,8 @@
+1、对radio 、checkbox 来说说，checked属性可以保证页面初始化被选中，但是通过js或者jquery 控制checked属性并不能保证相应的被选中，同样也不能通过checked属性来判断该元素是否被选中。
+
+2、checked属性并不能影响form表单的值，表单页面真正被选中的元素才是form表单提交的值。
+
+3、通jquery的prop方法可以完美的选中或者取消选中元素，使用prop("checked",true) 选中，prop("checked",false)取消选中，通prop("checked") 返回的false或者true判断是否选中。
+————————————————
+版权声明：本文为CSDN博主「李四老师」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_29542611/article/details/73385002
