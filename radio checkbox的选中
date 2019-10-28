@@ -6,3 +6,8 @@
 ————————————————
 版权声明：本文为CSDN博主「李四老师」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/qq_29542611/article/details/73385002
+
+另外 在ts中定义isPlayVideo时，应当是string类型的0，而不是数字类型的
+<input type="radio" name="b" class="" [(ngModel)]="isPlayVideo" value="1" />是
+<input type="radio" name="b" class="" checked="checked" [(ngModel)]="isPlayVideo" value="0" />否
+
