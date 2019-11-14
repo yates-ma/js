@@ -1,0 +1,3 @@
+父div加 
+    display: flex;
+    align-items: center;
