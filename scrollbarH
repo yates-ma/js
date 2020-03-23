@@ -1,0 +1,3 @@
+scrollbarH设置为true
+可以将列表的每列宽度可变：例如首列加个很小的勾选框
+https://swimlane.gitbook.io/ngx-datatable/api/table/inputs#scrollbarh
