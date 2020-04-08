@@ -1,0 +1,26 @@
+jsonp需get请求
+contentType为 application/json;charset=utf-8
+要指定回调函数名称
+
+在访问一个已认证系统的接口时，如满足跨域条件，同样会产生跨域。通过以下解决
+contentType: "application/x-www-form-urlencoded",
+xhrFields: {
+  withCredentials: true
+},
+crossDomain: true,
+
+-------------------------------
+
+后端：
+public void doFilter(ServletRequest req, ServletResponse res,
+        FilterChain chain) throws IOException, ServletException {
+        HttpServletResponse response = (HttpServletResponse) res;
+        HttpServletRequest request = (HttpServletRequest) req;
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("origin"));
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, access-token");
+        chain.doFilter(req, res);
+
+}
